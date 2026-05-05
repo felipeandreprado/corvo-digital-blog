@@ -3,17 +3,16 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ⚠️ SEGURANÇA
+# 🔐 SEGURANÇA
 SECRET_KEY = 'django-insecure-1*u35z$zfm$ch_*#77cm7%v5n213fm@_gkun1$8kgn*$-o^!*$'
 
-# 🚀 PRODUÇÃO
-DEBUG = False
+# 🧪 DEBUG dinâmico (local vs produção)
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = [
-    '.onrender.com',
-]
+# 🌐 HOSTS liberados
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.onrender.com']
 
-# APP
+# 📦 APPS
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -23,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# ⚙️ MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -35,10 +35,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 
+# 🧠 TEMPLATES (CORRIGIDO)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # 🔥 ESSENCIAL
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -52,7 +53,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# DATABASE (SQLite ok pra início no Render)
+# 🗄️ DATABASE
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -60,6 +61,7 @@ DATABASES = {
     }
 }
 
+# 🔑 VALIDAÇÃO DE SENHA
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -67,11 +69,20 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+# 🌍 INTERNACIONALIZAÇÃO
+LANGUAGE_CODE = 'pt-br'
+TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
-# STATIC (Render precisa disso)
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# 📁 ARQUIVOS ESTÁTICOS (CSS, JS, IMG)
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # 🔥 SUA PASTA STATIC
+]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # 🔥 PRODUÇÃO (Render)
+
+# 🔧 DEFAULT
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

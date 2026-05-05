@@ -1,0 +1,342 @@
+:root {
+    --bg: #ffffff;
+    --ink: #111827;
+    --muted: #6b7280;
+    --brand: #2563EB;
+    --header-height: 72px;
+}
+
+/* RESET */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+}
+
+/* HEADER */
+.site-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--header-height);
+    background: #000;
+    z-index: 100;
+}
+
+.header-shell {
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+    height: 100%;
+    padding: 0 16px;
+}
+
+/* LOGO */
+.site-logo {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    gap: 4px;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 55px;
+    margin-right: -6px;
+}
+
+.logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #e5e7eb;
+    font-weight: 600;
+}
+
+.logo-text .destaque {
+    color: #3b82f6;
+    font-weight: 700;
+}
+
+/* BOTÕES */
+.icon-button {
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* MENU ICON */
+.menu-toggle {
+    position: relative;
+}
+
+.menu-toggle__line {
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    background: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.menu-toggle__line:nth-child(1) { top: 14px; }
+.menu-toggle__line:nth-child(2) { top: 21px; }
+.menu-toggle__line:nth-child(3) { top: 28px; }
+
+/* MENU */
+.side-menu {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 280px;
+    height: calc(100vh - var(--header-height));
+    background: #000;
+    transform: translateX(-100%);
+    transition: transform .3s ease;
+    z-index: 200;
+
+    display: flex;
+    flex-direction: column;
+}
+
+body.menu-open .side-menu {
+    transform: translateX(0);
+}
+
+/* BACKDROP */
+.menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+    z-index: 150;
+}
+
+body.menu-open .menu-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* MENU GRID */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 16px;
+    background: #000;
+}
+
+.menu-card-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.menu-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ========================= */
+/* SOCIAL */
+/* ========================= */
+
+.menu-social {
+    padding: 24px 16px;
+    margin-top: auto;
+}
+
+/* LINHA */
+.social-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* BOTÃO BASE */
+.social-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: 0.3s;
+}
+
+/* ANEL NEON */
+.social-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 2px;
+
+    background: linear-gradient(45deg, red, orange, purple, blue);
+
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    filter: blur(2px);
+}
+
+/* ÍCONE */
+.social-btn svg {
+    width: 36px;
+    height: 36px;
+    fill: #fff;
+    z-index: 2;
+}
+
+/* INSTAGRAM */
+.social-btn.instagram::before {
+    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+.social-btn.instagram {
+    box-shadow: 0 0 14px #dd2a7b;
+}
+
+/* PINTEREST LARANJA */
+.social-btn.pinterest::before {
+    background: linear-gradient(45deg, #ff6600);
+}
+.social-btn.pinterest {
+    box-shadow: 0 0 14px #ff6600;
+}
+
+/* YOUTUBE VERMELHO */
+.social-btn.youtube::before {
+    background: linear-gradient(45deg, #ff0000);
+}
+.social-btn.youtube {
+    box-shadow: 0 0 14px #ff0000;
+}
+
+/* HOVER */
+.social-btn:hover {
+    transform: scale(1.12);
+}
+
+/* ========================= */
+/* BADGE EM BREVE */
+/* ========================= */
+
+.social-btn.coming-soon {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.social-btn .badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #9ca3af;
+    white-space: nowrap;
+}
+
+/* PAGE */
+.page-shell {
+    padding-top: calc(var(--header-height) + 16px);
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* FEATURED */
+.featured-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.featured-card {
+    position: relative;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px;
+    color: #fff;
+    text-decoration: none;
+    background-size: cover;
+    background-position: center;
+}
+
+.featured-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.featured-card__title,
+.featured-card__meta {
+    position: relative;
+    z-index: 2;
+}
+
+.featured-card__title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.featured-card__meta {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* POSTS */
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.post-row {
+    display: flex;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.post-row__image {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.post-row__title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.post-row__date {
+    font-size: 12px;
+    color: var(--muted);
+}
