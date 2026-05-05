@@ -1,1 +1,91 @@
-{% extends "base.html" %} {% block title %}Blog | Início{% endblock %} {% block content %} <!-- ================= DESTAQUES ================= --> <section> {% if featured_primary %} <div class="featured-grid"> <!-- PRINCIPAL --> <a href="{{ featured_primary.get_absolute_url }}" class="featured-card"> {% if featured_primary.cover_image %} <img src="{{ featured_primary.cover_image.url }}" alt="{{ featured_primary.title }}" class="featured-bg"> {% endif %} <strong class="featured-card__title"> {{ featured_primary.title }} </strong> <span class="featured-card__meta"> {{ featured_primary.created_at|date:"d/m/Y" }} </span> </a> <!-- SECUNDÁRIOS --> <div class="featured-stack"> {% for post in featured_secondary %} <a href="{{ post.get_absolute_url }}" class="featured-card"> {% if post.cover_image %} <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="featured-bg"> {% endif %} <strong class="featured-card__title"> {{ post.title }} </strong> <span class="featured-card__meta"> {{ post.created_at|date:"d/m/Y" }} </span> </a> {% endfor %} </div> </div> {% endif %} </section> <!-- ================= POSTS ================= --> <section> <h2 style="margin:20px 0 10px;">Posts recentes</h2> <div class="post-list"> {% for post in posts %} <a href="{{ post.get_absolute_url }}" class="post-row"> {% if post.cover_image %} <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="post-row__image"> {% endif %} <div> <div class="post-row__title"> {{ post.title }} </div> <div class="post-row__date"> {{ post.created_at|date:"d/m/Y" }} </div> </div> </a> {% empty %} <p>Nenhum post encontrado.</p> {% endfor %} </div> </section> {% endblock %}
+{% extends "base.html" %}
+
+{% block title %}Blog | Início{% endblock %}
+
+{% block content %}
+
+<!-- ================= DESTAQUES ================= -->
+<section>
+
+    {% if featured_primary %}
+    <div class="featured-grid">
+
+        <!-- PRINCIPAL -->
+        <a href="#" class="featured-card">
+            {% if featured_primary.cover_image %}
+                <img src="{{ featured_primary.cover_image.url }}" class="featured-bg">
+            {% endif %}
+
+            <strong class="featured-card__title">
+                {{ featured_primary.title }}
+            </strong>
+
+            <span class="featured-card__meta">
+                {{ featured_primary.created_at|date:"d/m/Y" }}
+            </span>
+        </a>
+
+        <!-- SECUNDÁRIOS -->
+        <div class="featured-stack">
+            {% for post in featured_secondary %}
+                <a href="#" class="featured-card">
+
+                    {% if post.cover_image %}
+                        <img src="{{ post.cover_image.url }}" class="featured-bg">
+                    {% endif %}
+
+                    <strong class="featured-card__title">
+                        {{ post.title }}
+                    </strong>
+
+                    <span class="featured-card__meta">
+                        {{ post.created_at|date:"d/m/Y" }}
+                    </span>
+
+                </a>
+            {% endfor %}
+        </div>
+
+    </div>
+    {% endif %}
+
+</section>
+
+<!-- ================= POSTS ================= -->
+<section>
+
+    <h2 style="margin:20px 0 10px;">Posts recentes</h2>
+
+    <div class="post-list">
+
+        {% if posts %}
+            {% for post in posts %}
+
+                <a href="#" class="post-row">
+
+                    {% if post.cover_image %}
+                        <img src="{{ post.cover_image.url }}" class="post-row__image">
+                    {% endif %}
+
+                    <div>
+                        <div class="post-row__title">
+                            {{ post.title }}
+                        </div>
+
+                        <div class="post-row__date">
+                            {{ post.created_at|date:"d/m/Y" }}
+                        </div>
+                    </div>
+
+                </a>
+
+            {% endfor %}
+        {% else %}
+            <p>Nenhum post encontrado.</p>
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}
