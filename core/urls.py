@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.urls import path
-from blog import views  # 👈 conecta com seu app
+from django.urls import path, include
 
 urlpatterns = [
-    path('', views.home, name='home'),  # 👈 agora renderiza HTML
+    path('', include('blog.urls')),  # 👈 usa o app
     path('admin/', admin.site.urls),
 ]
