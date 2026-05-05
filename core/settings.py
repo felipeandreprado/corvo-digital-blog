@@ -20,6 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'blog',  # 👈 ESSENCIAL
 ]
 
 # ⚙️ MIDDLEWARE
@@ -35,11 +37,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 
-# 🧠 TEMPLATES (CORRIGIDO)
+# 🧠 TEMPLATES
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # 🔥 ESSENCIAL
+        'DIRS': [BASE_DIR / 'templates'],  # 👈 pasta templates global
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,14 +77,14 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
-# 📁 ARQUIVOS ESTÁTICOS (CSS, JS, IMG)
+# 📁 ARQUIVOS ESTÁTICOS
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # 🔥 SUA PASTA STATIC
+    BASE_DIR / 'static',  # 👈 sua pasta local
 ]
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # 🔥 PRODUÇÃO (Render)
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # 👈 produção (Render)
 
 # 🔧 DEFAULT
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

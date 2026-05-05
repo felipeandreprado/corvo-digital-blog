@@ -1,11 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from django.http import HttpResponse
-
-def home(request):
-    return HttpResponse("🚀 Meu blog está no ar no Render!")
+from blog import views  # 👈 conecta com seu app
 
 urlpatterns = [
-    path('', home),
+    path('', views.home, name='home'),  # 👈 agora renderiza HTML
     path('admin/', admin.site.urls),
 ]
